@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Roboto+Mono:wght@400&display=swap');
+
+
+/* ------------------- Global styles ------------------- */
+
+body {
+    font-family: 'Goldman', sans-serif;
+    background-color: #292929;
+}
+
+
+/* ------------------- Main menu section ------------------- */
+
+#main-menu-section {
+    background: url(../../images/amber.jpg) center center no-repeat;
+    height: 100vh;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    display: flex;   
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+.opaque-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #0000004d;
+}
+
+h1 {
+    color:#000;
+    text-shadow: #ffffff -1px 0px, #ffffff 0px 1px, #ffffff 1px 0px, #ffffff 0px -1px;
+    position: absolute;
+    font-size: 2rem;
+    text-align: center;
+    top:15%;
+    left:15%;
+}
+
+h1 li {
+    list-style-type: none;
+}
+
+#volume-up-menu {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    z-index: 1000;
+}
+
+#main-image img {
+    width: 100%;
+    height: auto;
+
+  }
+
+#main-menu {
+    color: white;
+    background-color: #ddce49;
+    position: relative;
+}
+
+.btn-block {
+    color: white;
+    width: 65%;
+    font-weight: 700;
+    font-size: 28px;
+    background-color: #9d8360;
+    border: 4px solid transparent;
+}
+
+#play {
+    font-size: 38px;
+    background-color: #a38c74;;
+    border: 4px solid transparent;
+}
+
+#play:hover,
+.btn-block:hover {
+    color: #000000;
+    text-shadow: #ffffff -1px 0px, #ffffff 0px 1px, #ffffff 1px 0px, #ffffff 0px -1px;
+    border: 4px solid #ffffff;
+}
+
+.options{
+    text-align: center;
+}
+
+/* Easy and hard section */
+
+.modal-content{
+    background-color: #ddce49;
+    color: black;
+}
+
+.level {
+    width: 125px;
+    height: 125px;
+    margin: 10px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.level:hover {
+    color: black;
+}
+
+#easy {
+    background-color: #55699a;
+    border: 3px solid transparent;
+}
+
+#hard {
+    background-color:#f73918;
+    border: 3px solid transparent;
+}
+
+#easy:hover,
+#hard:hover {
+    border: 3px solid #ffffff;
+}
+
+
+/* display my pexeso game in game board */
+
+ #display-game{
+     /* background-color: #ddce49; */
+     display:flex;
+ } 
+
+ #buttonColor{
+     color:white;
+     border-color: antiquewhite;
+ }
+
+
+
+
+/* my cards */
+
+
+.card {
+    width: 23%;
+    height: 115px;
+    margin-left: 2px;
+    margin-right: 3px;
+    border: 3px solid  #ffffff;
+    /* background-color: #55699a; */
+    background: url(../../images/pexesoCard.jpg) center center no-repeat;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.card:hover {
+    border: 3px solid #f73918;
+}
+
+
+
+
+.card {
+    position: relative;
+    /* display: flex; */
+    max-width: 100%; 
+    max-height: 100%;
+    transition: transform 300ms ease-in-out;
+  }
+  
+  /* transform specifies the degrees for turning the cards*/
+  .card-back {
+    transform: rotateY(0);
+  }
+  
+  .card-picture {
+    transform: rotateY(-180deg);
+  }
+  
+  .card.visible .card-back {
+    transform: rotateY(180deg);
+  }
+  
+  .card.visible .card-picture {
+    transform: rotateY(0);
+  }
+  
+  .card-picture {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    backface-visibility: hidden;
+    border-radius: 2px;
+  }
+  
+  .card-img,
+  .card-back {
+    max-width: 100px; 
+    max-height: 100px;
+  }
+

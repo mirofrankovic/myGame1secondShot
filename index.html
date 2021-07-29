@@ -10,9 +10,218 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous" />
     <!-- CSS file -->
     <link rel="stylesheet" href="assets/css/css/style.css" />
-    <title>Document</title>
+    <title>Game</title>
 </head>
 <body>
+    <!-- Main menu section -->
+    <section id="main-menu-section">
+        <div class="opaque-overlay">&nbsp;</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+                    <div id="main-menu" class="pb-3 pt-2">
+                        <h1 class="ml-3">
+                            <strong>
+                                Hello!<br />
+                                Do you want to play a Pexeso?<br />
+                                Let's play!
+                            </strong>
+                        </h1>
+                        <div class="row">
+                            <div class="offset-3 col-5">
+                                <div id="main-image"><img src="assets/images/pexeso.jpg" alt="Title image for game" /></div>
+                            </div>
+                        </div>
+                        <div class="options">
+                            <button type="button" class="btn-block mx-auto p-4 mt-3 mb-3 click" id="play" data-bs-toggle="modal" data-bs-target="#level-modal">Play</button>
+                            <button type="button" class="btn-block mx-auto p-1 click" id="about" data-bs-toggle="modal" data-bs-target="#about-modal">About</button>
+                            <button type="button" class="btn-block mx-auto p-1 click" id="highscores" data-bs-toggle="modal" data-bs-target="#highscores-modal">Highscores</button>
+                            <button type="button" class="btn-block mx-auto p-1 click" id="credits" data-bs-toggle="modal" data-bs-target="#credits-modal">Credits</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+     </section>
+     <!-- My Game section -->
+     <section id="display-game" class="pexeso-class clearfix">
+        <div class="container mt-6">
+            <div class="reset">
+                <button class="btn reset-btn">Reset <i class="fa fa-repeat"></i></button>
+            </div>
+            <div class="changeColor">
+                <button id="buttonColor" class="btn change-btn">Change color <i class="fa fa-repeat"></i></button>
+            </div>
+            <div class="row">
+                <div class="col-12 offset-md-3 col-md-6 offset-lg-4 col-lg-4">
+                    <div id="cards-container">
+                        <div>
+                            <p class="float-left click" id="goBack">Go back </p>
+                        </div>
+                        <p id="points" class="text-center"><span class="pl-1">Points:</span><span class="pr-1"></span></p>
+                        <p id="chooseLevel" class="float-left"><span class="pl-1">Level:</span><span class="pr-1"></span></p>
+                        <p id="time" class="float-right"><span class="pl-1">Time:</span><span class="pr-1"></span></p>
+                        <div id="my-pexeso" class="clearfix text-center"></div>
+                        <p id="counter" class="text-center mt-3"><span class="pl-1">Turn counter:</span><span class="pr-1"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+      <!-- Game my level modal -->
+      <div class="modal fade" id="level-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body mx-auto">
+                    <h2>Select difficulty:</h2>
+                    <div class="level d-inline-block text-center click" id="easy" data-bs-dismiss="modal">
+                        <h3 class="mt-4">Easy</h3>
+                        <p>8 cards</p>
+                    </div>
+                    <div class="level d-inline-block text-center click" id="hard" data-bs-dismiss="modal">
+                        <h3 class="mt-4">Hard</h3>
+                        <p>16 cards</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger click" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--About Pexeso Game modal-->
+    <div class="modal fade" id="about-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h2>How to play Pexeso:</h2>
+                    <p>
+                        The aim of the game is to find all matching images character pairs before the time runs out. Click on a card to turn it over, then click on another one. If the two cards match, they will stay face-up. If the two
+                        cards do not match, they will return to being face-down.
+                    </p>
+                    <p>The game ends when all the cards have been matched in pairs before time finished</p>
+                    <h3>Scoring system:</h3>
+                    <p>Game will start with 0 points, score 50 points whenever you turn over cards that match and lose 20 points whenever they don't match.</p>
+                    <p class="m-0">Time remaining when all pairs matched will be added as bonus:</p>
+                    <ul>
+                        <li>Easy: 1 sec = 1 point</li>
+                        <li>Hard: 1 sec = 2 points</li>
+                    </ul>
+                    <div class="p-2" id="benefits">
+                        <h2>Benefits of playing memory games:</h2>
+                        <p class="m-0">
+                            Playing memory games can improve short-term memory as well as long-term memory. Memory games exercise the brain’s memory function. The key is to remember to play them regularly. Some benefits of memory games
+                            are preventing memory-related illnesses and enhancing other brain functions.
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger click" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- Highscores modal -->
+     <div class="modal fade" id="highscores-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h2>Highscores:</h2>
+                    <div id="easy-table">
+                        <p class="m-0">Level: easy</p>
+                        <table class="table text-center p-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Points</th>
+                                    <th scope="col">Turns</th>
+                                </tr>
+                            </thead>
+                            <tbody id="print-scores-easy"></tbody>
+                        </table>
+                    </div>
+                    <div id="hard-table">
+                        <p class="m-0">Level: hard</p>
+                        <table class="table text-center p-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Points</th>
+                                    <th scope="col">Turns</th>
+                                </tr>
+                            </thead>
+                            <tbody id="print-scores-hard"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning mr-auto click" id="clear">Clear scores</button>
+                    <button type="button" class="btn btn-danger click" id="close-high" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Credits modal -->
+    <div class="modal fade" id="credits-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h2>Developed by:</h2>
+                    <p class="m-0">Miro Frankovic</p>
+                    <div id="subscribe">
+                        <!-- <h1>Subscribe</h1> -->
+                        <span id="email-text">Subscribe to our newsletter to be the first to hear about new game releases!</span>
+                        <form id="email-subscribe">
+                            <label for="email">
+                            <span class="enter-email">Enter email address:</span></label>
+                            <input type="email" id="email" name="email" required />
+                            <input type="button" id="subscribe-submit" value="Subscribe!" />
+                      </form>
+                    </div>
+                    <h2>Credits and special thanks:</h2>
+                    <h4>Code:</h4>
+                    <ul>
+                        <li><a href="https://getbootstrap.com/" rel="noopener" target="_blank">Bootstrap</a> library mainly to make site responsive and implement simple style for margins, padding and elements alignment.</li>
+                        <li>
+                            <a href="https://www.w3schools.com/" rel="noopener" target="_blank">W3 Schools</a> referenced for code:
+                            <ul>
+                                <li>The Fisher Yates Method to sort an array.</li>
+                                <li>How to use local storage.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4>Media:</h4>
+                    <ul>
+                        <li>Pexeso for children menu: <a href="http://www.pexeso.net/children-s-toys/05CB4?lang=en" rel="noopener" target="_blank">Pexeso</a></li>
+                        <li>Cards figures images: <a href="https://www.cleanpng.com/" rel="noopener" target="_blank">cleanPNG</a></li>
+                        <li>Icons: <a href="https://fontawesome.com/" rel="noopener" target="_blank">Font Awesome</a></li>
+                        <li>Audio: <a href="https://www.zapsplat.com/" rel="noopener" target="_blank">Zapslat</a></li>
+                    </ul>
+                    <h4>Acknowledgments:</h4>
+                    <ul>
+                        <li><a href="https://codeinstitute.net" rel="noopener" target="_blank">Code Institute</a></li>
+                        <li><a href="https://stackoverflow.com/" rel="noopener" target="_blank">Stack Overflow</a></li>
+                        <li>Code Institute Slack Community.</li>
+                        <li>My mentor Guido Cecilio for guidance and support.</li>
+                        <li>My family and friends for their patience and honest critique throughout.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger click" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+     <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="crossorigin="anonymous"></script>
+     <!-- Bootstrap JavaScript file  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+     <!-- JavaScript file -->
+     <script src="assets/js/js/app.js"></script>
     
 </body>
 </html>
