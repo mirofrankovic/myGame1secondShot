@@ -16,7 +16,12 @@
  
  
  let count = 0;
- 
+ let correct_flips = 0;
+ let last_flipped = [];
+ let moves = 0;
+ let seconds = 0;
+ let minutes = 0;
+   
  
  // Main menu section
  const mainMenuSection = document.getElementById("main-menu-section");
@@ -26,6 +31,8 @@
  const displayGame = document.getElementById("display-game");
  const cardP = document.getElementById("my-pexeso");
  const levelGame = document.querySelector("#chooseLevel span:nth-child(2)");
+ const time = document.getElementById("time");
+ const counter = document.getElementById("counter");
  const back = document.getElementById("goBack");
  
  
@@ -135,23 +142,30 @@
     const cards = myCard.concat(myCard);
     const cardsContainer = document.getElementById("cards-container");
 
-      for (let i = 1; i <= 9; i++) {
-         let myDiv = document.createElement("div");
-      if (i%2 === 0) {
-         myDiv.innerHTML = "<div class=\"card\">"+ i +"</div>" 
-      }
-      else {
-         myDiv.innerHTML = "<div class=\"card card-odd\">"+ i +"</div>" 
-      }
-         cardsContainer.appendChild(myDiv);
-      }
+    
+    const frontFaces = document.getElementsByClassName('card-img');
+    const backFaces = document.getElementsByClassName('card-picture');
+
+
+       
+      // for (let i = 1; i <= cardNum; i++) {
+      //    let myDiv = document.createElement("div");
+      //    // cards = `${cards}<div class="card" id="c${i}"></div>`;
+      // if (i%2 === 0) {
+      //    myDiv.innerHTML = "<div class=\"card\">"+ i +"</div>" 
+      // }
+      // else {
+      //    myDiv.innerHTML = "<div class=\"card card-odd\">"+ i +"</div>" 
+      // }
+      //    cardsContainer.appendChild(myDiv);
+      // }
       
  
-    if(selectLevel === "easy"){
-       cardNum = 8;
+    if(cardNum === 8){
+      levelGame.innerHTML = selectLevel;
        
-    }else if (selectLevel === "hard"){
-       cardNum = 16;
+    }else if (cardNum === 16){
+      levelGame.innerHTML = selectLevel;
     }
     console.log(cardNum)
 

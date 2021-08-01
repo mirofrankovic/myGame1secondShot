@@ -162,9 +162,6 @@ h1 li {
     border: 3px solid #f73918;
 }
 
-
-
-
 .card {
     position: relative;
     /* display: flex; */
@@ -174,7 +171,7 @@ h1 li {
   }
   
   /* transform specifies the degrees for turning the cards*/
-  .card-back {
+    .card-back {
     transform: rotateY(0);
   }
   
@@ -206,5 +203,5 @@ h1 li {
   .card-back {
     max-width: 100px; 
     max-height: 100px;
-  }
-
+  } 
+ 
