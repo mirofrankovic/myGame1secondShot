@@ -138,8 +138,15 @@
  //https://stackoverflow.com/questions/55426589/how-to-append-an-array-of-objects-to-a-card-element-in-javascript append cards
  
  function appendCards(cardNum){
+
+
+   if (selectLevel === "easy") {
+      var cards = myCard;
+  } else if (selectLevel === "hard") {
+      var cards = myCard.concat(myCard);
+  }
  
-    const cards = myCard.concat(myCard);
+   //  const cards = myCard.concat(myCard);
     const cardsContainer = document.getElementById("cards-container");
 
     
