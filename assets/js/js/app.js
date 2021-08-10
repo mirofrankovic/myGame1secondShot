@@ -29,7 +29,7 @@
  
  // Game display section
  const displayGame = document.getElementById("display-game");
- const cardP = document.getElementById("my-pexeso");
+//  const cardP = document.getElementById("my-pexeso");
  const levelGame = document.querySelector("#chooseLevel span:nth-child(2)");
  const time = document.getElementById("time");
  const counter = document.getElementById("counter");
@@ -139,7 +139,6 @@
  
  function appendCards(cardNum){
 
-
    if (selectLevel === "easy") {
       var cards = myCard;
   } else if (selectLevel === "hard") {
@@ -184,15 +183,26 @@
  
        cardsAppend.forEach((card) => {
           card.addEventListener("click", () => {
-              this.turnCard(card);
+              this.flippingCards(card);
           });
          //  console.log("APPENDING CARDS")
        }
        
        )});
-
-       
+   
     }
+
+    function flippingCards(card) {            // displayImage()
+      moves++
+      counter.innerHTML = moves;
+      const element = card.target;
+
+ 
+      console.log('I was clicked');
+      console.log(this);
+   }
+
+
  
  // To remove cards while doubled when starting level
  
@@ -224,15 +234,14 @@
  
  function attachCardEventListeners() {
     const cards = document.querySelectorAll('.card');       //parameter
-    cards.forEach(card => card.addEventListener('click', (event) => {   //event display card
+
+    //https://stackoverflow.com/questions/54301872/show-images-with-click-function/54301946
+    cards.forEach(card => card.classList.add('flip')); // add class list for my flip card image ????
+    cards.forEach(card => card.addEventListener('click', (event) => {   //event==> flipCard(event)
+      
  
        console.log('card clicked was: ', event.target.id)
     }))
- }
- 
- 
- function turnCard(){
- 
  }
  
  
@@ -274,11 +283,6 @@
  //Flipping my cards
  
  
- function flippingCards() {
- 
-    console.log('I was clicked');
-    console.log(this);
- }
  
  // Check if two cards are a match-> comparing two values in array
  const checkMatch = (myCard) => {
