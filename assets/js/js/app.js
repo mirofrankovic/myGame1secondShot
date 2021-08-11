@@ -233,16 +233,27 @@
  
  
  function attachCardEventListeners() {
+
+    // Images are the ones that need to change visibility
+    const images = document.querySelectorAll('.card-picture'); 
+    
+    // Card need to be clicked
     const cards = document.querySelectorAll('.card');       //parameter
 
     //https://stackoverflow.com/questions/54301872/show-images-with-click-function/54301946
-    cards.forEach(card => card.classList.add('flip')); // add class list for my flip card image ????
-    cards.forEach(card => card.addEventListener('click', (event) => {   //event==> flipCard(event)
-      
+    images.forEach(cardImage => cardImage.classList.add('flip')); // add class list for my flip card image ????
+    cards.forEach(card => card.addEventListener('click', (event) => {   //event==> flipCard(event)//card need to be clicked
+                                                         //showCard() function here?             
  
        console.log('card clicked was: ', event.target.id)
     }))
  }
+
+ function showCard() {
+   // This can be done with toggle of the class as per another answer
+   this.classList.remove('flip');
+   this.style.visibility = 'visible';
+}
  
  
  // Shuffle cards before each game
