@@ -242,17 +242,19 @@
 
     //https://stackoverflow.com/questions/54301872/show-images-with-click-function/54301946
     images.forEach(cardImage => cardImage.classList.add('flip')); // add class list for my flip card image ????
-    cards.forEach(card => card.addEventListener('click', (event) => {   //event==> flipCard(event)//card need to be clicked
-                                                         //showCard() function here?             
+    cards.forEach(card => card.addEventListener('click', function(event) {   //event==> flipCard(event)//card need to be clicked
+                                                         //showCard() function here?  
+         showCard(this);                                                        
  
-       console.log('card clicked was: ', event.target.id)
+       console.log('card clicked was: ', event.target)  //event.target.id
     }))
  }
 
- function showCard() {
+ function showCard(card) {
    // This can be done with toggle of the class as per another answer
-   this.classList.remove('flip');
-   this.style.visibility = 'visible';
+   card.classList.toggle("flip");
+   // this.classList.remove('flip');
+   card.style.visibility = 'visible';
 }
  
  
