@@ -15,12 +15,21 @@
  
  
  
- let count = 0;
- let correct_flips = 0;
- let last_flipped = [];
+//  let count = 0;
+//  let correct_flips = 0;
+//  let last_flipped = [];
+
+ let cardsId = [];
+ let cardsSelected = [];  
  let moves = 0;
  let seconds = 0;
  let minutes = 0;
+
+ 
+let flipCounter = 0;
+let turnsCounter = 0;
+let countSelected = 0;
+
    
  
  // Main menu section
@@ -133,10 +142,6 @@
  
  }
  
- //add parameter cardNum to appendCards to determine how many cards I need to append  => for loop?
- //https://stackoverflow.com/questions/52739898/making-cards-with-javascript-and-html   for loop
- //https://stackoverflow.com/questions/55426589/how-to-append-an-array-of-objects-to-a-card-element-in-javascript append cards
- 
  function appendCards(cardNum){
 
    if (selectLevel === "easy") {
@@ -147,26 +152,10 @@
  
    //  const cards = myCard.concat(myCard);
     const cardsContainer = document.getElementById("cards-container");
-
-    
+   
     const frontFaces = document.getElementsByClassName('card-img');
     const backFaces = document.getElementsByClassName('card-picture');
 
-
-       
-      // for (let i = 1; i <= cardNum; i++) {
-      //    let myDiv = document.createElement("div");
-      //    // cards = `${cards}<div class="card" id="c${i}"></div>`;
-      // if (i%2 === 0) {
-      //    myDiv.innerHTML = "<div class=\"card\">"+ i +"</div>" 
-      // }
-      // else {
-      //    myDiv.innerHTML = "<div class=\"card card-odd\">"+ i +"</div>" 
-      // }
-      //    cardsContainer.appendChild(myDiv);
-      // }
-      
- 
     if(cardNum === 8){
       levelGame.innerHTML = selectLevel;
        
@@ -220,14 +209,16 @@
      */
  
   function renderCards(pexesoImg) {                          //myCard?
-    return `<div class="card">
-                     <div class="card-back all-cards">
+    return `<div class="card flip-card">
+               <div class="flip-card-inner>
+                     <div class="card-back flip-card-back all-cards">
                          <img class="card-img" src="../../images/pexesoCard.jpg"  alt="Hidden card">
                      </div> 
-                     <div class="card-picture all-cards">
+                     <div class="card-picture flip-card-front all-cards">
                          <img class="card-value card-img" src="assets/images/${pexesoImg}" alt="Picture card">
                      </div>
-                 </div>`;
+               </div>      
+            </div>`;
  
  }
  
@@ -238,12 +229,11 @@
     const images = document.querySelectorAll('.card-picture'); 
     
     // Card need to be clicked
-    const cards = document.querySelectorAll('.card');       //parameter
+    const cards = document.querySelectorAll('.card');       
 
-    //https://stackoverflow.com/questions/54301872/show-images-with-click-function/54301946
-    images.forEach(cardImage => cardImage.classList.add('flip')); // add class list for my flip card image ????
-    cards.forEach(card => card.addEventListener('click', function(event) {   //event==> flipCard(event)//card need to be clicked
-                                                         //showCard() function here?  
+    images.forEach(cardImage => cardImage.classList.add('flip')); 
+    cards.forEach(card => card.addEventListener('click', function(event) {   
+                                                         
          showCard(this);                                                        
  
        console.log('card clicked was: ', event.target)  //event.target.id
@@ -255,7 +245,31 @@
    card.classList.toggle("flip");
    // this.classList.remove('flip');
    card.style.visibility = 'visible';
+
+   let selected = this.dataset.id;
+   cardsSelected.push(myCard[selected].name); 
+   cardsId.push(selected); 
+   this.classList.add("flip"); 
+   this.setAttribute("src", myCard[selected].img); 
+   if (cardsId.length === 2) { 
+   setTimeout(checkForMatch, 500);
+} 
 }
+
+// Check cards if they match
+
+function checkForMatch() {}
+
+ 
+ 
+ // Check if two cards are a match-> comparing two values in array
+ const checkMatch = (myCard) => {
+   if (myCard[0] === myCard[1]) {
+      console.log("it's a match");
+      return true;
+   }
+};
+
  
  
  // Shuffle cards before each game
@@ -291,20 +305,6 @@
  const cards = myCard
     .concat(myCard);  //concatenating the cards as an array
  cards.sort(() => 0.5 - Math.random());
- 
- 
- //Flipping my cards
- 
- 
- 
- // Check if two cards are a match-> comparing two values in array
- const checkMatch = (myCard) => {
-    if (myCard[0] === myCard[1]) {
-       console.log("it's a match");
-       return true;
-    }
- };
- 
  
  
  // Add figure on the other side of card
