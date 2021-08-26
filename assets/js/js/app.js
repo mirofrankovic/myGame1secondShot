@@ -19,11 +19,11 @@
 //  let correct_flips = 0;
 //  let last_flipped = [];
 
- let cardsId = [];
- let cardsSelected = [];  
- let moves = 0;
- let seconds = 0;
- let minutes = 0;
+let cardsId = [];
+let cardsSelected = [];  
+let moves = 0;
+let seconds = 0;
+let minutes = 0;
 
  
 let flipCounter = 0;
@@ -246,14 +246,16 @@ let countSelected = 0;
    // this.classList.remove('flip');
    card.style.visibility = 'visible';
 
-   let selected = this.dataset.id;
-   cardsSelected.push(myCard[selected].name); 
-   cardsId.push(selected); 
-   this.classList.add("flip"); 
-   this.setAttribute("src", myCard[selected].img); 
-   if (cardsId.length === 2) { 
-   setTimeout(checkForMatch, 500);
-} 
+   event.target.classList.add("flip");  //??
+
+//    let selected = this.dataset.id;  //name
+//    cardsSelected.push(myCard[selected].imageName); // created variables line 22 and 23
+//    cardsId.push(selected); 
+//    this.classList.add("flip"); 
+//    this.setAttribute("src", myCard[selected].img); 
+//    if (cardsId.length === 2) { 
+//    setTimeout(checkForMatch, 500);
+// } 
 }
 
 // Check cards if they match
