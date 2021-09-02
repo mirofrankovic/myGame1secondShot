@@ -146,13 +146,21 @@ function chooseLevel(playerLevel) {
 function appendCards(cardNum) {
    const cards = myCards.concat(myCards)
 
+
+//    if (selectLevel === "easy") {
+//       var cards = myCard;
+//   } else if (selectLevel === "hard") {
+//       var cards = myCard.concat(myCard);
+//   }
+  
+
    //  const cards = myCard.concat(myCard);
    const cardsContainer = document.getElementById("cards-container");
 
    cards.forEach((imageName) => cardsContainer.insertAdjacentHTML("beforeend", renderCard(imageName)));
    let elements = Array.from(document.getElementsByClassName("card"));
 
-   elements.forEach((card) => {                                         //conatain the value from array
+   elements.forEach((card) => {                                         
       card.addEventListener("click", () => {
          flippingCard(card);
       });

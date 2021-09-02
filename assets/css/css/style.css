@@ -148,9 +148,10 @@ h1 li {
 
 .card {
     width: 23%;
-    height: 115px;
-    margin-left: 2px;
+    /* height: 115px; */
+    /* margin-left: 2px; */
     margin-right: 3px;
+    margin-bottom: 3px;
     border: 3px solid  #ffffff;
     /* background-color: #55699a; */
     background: url(../../images/pexesoCard.jpg) center center no-repeat;
