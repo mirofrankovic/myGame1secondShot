@@ -78,7 +78,7 @@ h1 li {
 
 #play {
     font-size: 38px;
-    background-color: #a38c74;;
+    background-color: #a38c74;
     border: 4px solid transparent;
 }
 
@@ -144,51 +144,32 @@ h1 li {
 
 
 /* my cards */
-
-
-.card {
-    width: 23%;
-    /* height: 115px; */
-    /* margin-left: 2px; */
-    margin-right: 3px;
-    margin-bottom: 3px;
-    border: 3px solid  #ffffff;
-    /* background-color: #55699a; */
-    background: url(../../images/pexesoCard.jpg) center center no-repeat;
-    cursor: pointer;
-    display: inline-block;
-}
-
-.card:hover {
-    border: 3px solid #f73918;
-}
-
 .card {
     position: relative;
-    /* display: flex; */
+    display: flex;
     max-width: 100%; 
     max-height: 100%;
     transition: transform 300ms ease-in-out;
-  }
+}
   
-  /* transform specifies the degrees for turning the cards*/
-    .card-back {
+/* transform specifies the degrees for turning the cards*/
+.card-back {
     transform: rotateY(0);
-  }
+}
   
-  .card-picture {
+.card-picture {
     transform: rotateY(-180deg);
-  }
-  
-  .card.visible .card-back {
+}
+
+.card.visible .card-back {
     transform: rotateY(180deg);
-  }
-  
-  .card.visible .card-picture {
+}
+
+.card.visible .card-picture {
     transform: rotateY(0);
-  }
-  
-  .card-picture {
+}
+
+.card-picture {
     display: flex;
     position: absolute;
     width: 100%;
@@ -198,79 +179,19 @@ h1 li {
     overflow: hidden;
     backface-visibility: hidden;
     border-radius: 2px;
-  }
-  
-  .card-img,
-  .card-back {
-    max-width: 100px; 
-    max-height: 100px;
-  } 
-
-
-.flip-card {
-    cursor: pointer;
-    background-color: transparent;
-    -webkit-perspective: 1000px;
-    
-    perspective: 1000px; 
-} 
-
-/* Positions the cards */
-.flip-card-inner {
-    cursor: pointer;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    -webkit-transition: -webkit-transform 0.8s;
-    transition: -webkit-transform 0.8s;
-    -o-transition: transform 0.8s;
-    transition: transform 0.8s;
-    transition: transform 0.8s, -webkit-transform 0.8s;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1); 
 }
 
+.card-img,
+.card-back {
+    max-width: 100px; 
+    max-height: 100px;
+}
 
-/* Horizontal flip when you click flip box container */
-.flip-card.face-up .flip-card-inner {
-    -webkit-transform: rotateY(180deg);
-    -ms-transform: rotateY(180deg);
-    transform: rotateY(180deg); }
-  
-  /* Positions the front and back side */
-  .flip-card-front, .flip-card-back {
-    cursor: pointer;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    /* Bug fix: Cards were not staying flipped over on Safari browser, this line of code fixed it.*/
-    -webkit-backface-visibility: hidden; }
-  
-  /* animation on flipping back */
-  .flip-card-back {
-    cursor: pointer;
-    -webkit-transform: rotateY(180deg);
-    -ms-transform: rotateY(180deg);
-    transform: rotateY(180deg); }
-  
-  /* indents card slightly on click, before flip */
-  .flip-card:active {
-    -webkit-transform: scale(0.97);
-    -ms-transform: scale(0.97);
-    transform: scale(0.97);
-    -webkit-transition: -webkit-transform .2s;
-    transition: -webkit-transform .2s;
-    -o-transition: transform .2s;
-    transition: transform .2s;
-    transition: transform .2s, -webkit-transform .2s; 
-
-  }
-
-  
-.disabled {
-    pointer-events: none; }
+.board-grid {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
+    margin: 10%;
+    justify-content: center;
+    perspective: 500px;
+}

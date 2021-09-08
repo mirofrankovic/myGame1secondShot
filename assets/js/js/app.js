@@ -33,6 +33,9 @@ let countSelected = 0;
 let checkCard = null;
 let matchedCards = [];
 let busy = false;
+let fullDeck = [];
+
+const delayBeforeRemovingCards = 100;
 
 // Main menu section
 const mainMenuSection = document.getElementById("main-menu-section");
@@ -71,17 +74,6 @@ btnColor.onclick = function () {
 }
 
 
-
-// Highscores modal
-
-// Game win modal
-
-
-// Times up modal
-
-// Clear confirmation modal
-
-
 // ----------------------- Buttons
 // Back to main menu buttons
 back.addEventListener("click", function () {
@@ -95,9 +87,6 @@ back.addEventListener("click", function () {
 function startPexesoGame() {
    mainMenuSection.style.display = "flex";
    displayGame.style.display = "none";
-
-
-   // appendCards();
 }
 
 
@@ -111,48 +100,32 @@ let selectLevel;
 let pairs;
 
 function chooseLevel(playerLevel) {
-   let cards = "";
    let cardNum = 15;
 
    if (playerLevel === "easy") {
       selectLevel = "easy";
-      cardNum = 7;
+      cardNum = 8;
       levelGame.innerHTML = selectLevel;
       pairs = 4;
    } else if (playerLevel === "hard") {
       selectLevel = "hard";
-      cardNum = 15;
+      cardNum = 16;
       levelGame.innerHTML = selectLevel;
       pairs = 8;
-
    }
-
-   shuffleImages();
-
-   let i;
-   for (i = 0; i <= cardNum; i++) {
-      cards = `${cards}<div class="card" id="c${i}"></div>`;
-   }
-
-   // cardP.innerHTML = cards;
 
    mainMenuSection.style.display = "none";
-   displayGame.style.display = "flex";
+   // displayGame.style.display = "flex";
 
-   appendCards(cardNum);         // add variable
+   // We divide the number of card by two in order to create pairs
+   randomCards = shuffleImages(cardNum / 2);
+   appendCards(randomCards);
+
    //attachCardEventListeners();
 }
 
-function appendCards(cardNum) {
-   const cards = myCards.concat(myCards)
-
-
-//    if (selectLevel === "easy") {
-//       var cards = myCard;
-//   } else if (selectLevel === "hard") {
-//       var cards = myCard.concat(myCard);
-//   }
-  
+function appendCards(randomCards) {
+   const cards = randomCards.concat(randomCards)
 
    //  const cards = myCard.concat(myCard);
    const cardsContainer = document.getElementById("cards-container");
@@ -165,6 +138,8 @@ function appendCards(cardNum) {
          flippingCard(card);
       });
    });
+
+   fullDeck = elements;
 }
 
 function flippingCard(card) {
@@ -173,6 +148,7 @@ function flippingCard(card) {
       card.classList.add('visible');
       if (checkCard) {
          checkForMatch(checkCard, card);
+         checkCard = null;
       } else {
          checkCard = card;
       }
@@ -203,15 +179,13 @@ function clearCards() {
  * @param {String} pexesoImg
  */
 function renderCard(pexesoImg) {                          //myCard?
-   return `<div class="card flip-card">
-               <div class="flip-card-inner>
-                     <div class="card-back flip-card-back all-cards">
-                         <img class="card-img" src="assets/images/pexesoCard.jpg"  alt="Hidden card">
-                     </div> 
-                     <div class="card-picture flip-card-front all-cards">
-                         <img class="card-value card-img" src="assets/images/${pexesoImg}" alt="Picture card">
-                     </div>
-               </div>      
+   return `<div class="card">
+               <div class="card-back all-cards">
+                     <img class="card-img" src="assets/images/pexesoCard.jpg"  alt="Hidden card">
+               </div> 
+               <div class="card-picture all-cards">
+                     <img class="card-value card-img" src="assets/images/${pexesoImg}" alt="Picture card">
+               </div>
             </div>`;
 }
 
@@ -240,27 +214,16 @@ function showCard(event, card) {
    card.style.visibility = 'visible';
 
    event.target.classList.add("flip");  //("flip-card")
-
-   //    let selected = this.dataset.id;  //name
-   //    cardsSelected.push(myCard[selected].imageName); // created variables line 22 and 23
-   //    cardsId.push(selected); 
-   //    this.classList.add("flip"); 
-   //    this.setAttribute("src", myCard[selected].img); 
-   //    if (cardsId.length === 2) { 
-   //    setTimeout(checkForMatch, 500);
-   // } 
 }
 
 // Check cards if they match
 
-function checkForMatch(checkCard, card) {
+function checkForMatch(card1, card2) {
    console.log('Check for a match');
-   if (checkCardType(card) === checkCardType(checkCard)) {
-      cardMatcher(card, checkCard);
+   if (checkCardType(card1) === checkCardType(card2)) {
+      cardMatcher(card1, card2);
    } else {
-      notAMatch(card, checkCard);
-      // Clears the card selection
-      checkCard = null;
+      notAMatch(card1, card2);
    }
 }
 
@@ -272,7 +235,7 @@ function cardMatcher(card1, card2) {
        card1.classList.add("invisible");
        card2.classList.add("invisible");
    }, delayBeforeRemovingCards);
-   checkCard = null;
+   //checkCard = null;
    // Ends the game when all cards have been matched
    if (matchedCards.length === fullDeck.length) {
        gameWin();
@@ -288,9 +251,11 @@ function notAMatch(card1, card2) {
    }, 500);
 }
 
+
 function checkCardType(card) {
    return card.getElementsByClassName("card-value")[0].src;
 }
+
 
 function gameWin() {
    console.log('Game Win!');
@@ -306,87 +271,13 @@ const checkMatch = (myCard) => {
 };
 
 
-
-// Shuffle cards before each game
-let shuffImg;
-
-function shuffleImages() {
-   shuffImg = myCards.slice();
-   let cardNum = 12;
-   if (selectLevel === "easy") {
-      cardNum = 6;
-   } else if (selectLevel === "hard") {
-      cardNum = 10;
-   }
-
-   let i;
-   let j;
-   let temp;
-   for (i = cardNum; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      temp = shuffImg[i];
+function shuffleImages(cardNum) {
+   const shuffImg = myCards.slice(0, cardNum);
+   for (let i = cardNum-1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = shuffImg[i];
       shuffImg[i] = shuffImg[j];
       shuffImg[j] = temp;
    }
    return shuffImg;
-
 }
-
-// const addCard = document.getElementById("cards-container");  //DOM
-// addCard.addEventListener("click", function () {
-
-// });
-
-const cards = myCards
-   .concat(myCards);  //concatenating the cards as an array
-cards.sort(() => 0.5 - Math.random());
-
-
- // Add figure on the other side of card
- // Check if one or two cards reversed
- // Check if two cards are the same
- // Add lock to prevent reverse more than 2 cards before check
- // Update turn counter with every two cards reversed
- // Call scoring function to add points when 2 cards match and subtract points when don't
-
-
-
-
- // When 2 reversed cards match keep them on board
- // Remove lock
- // Update pairs variable and if 0 clear time interval
- // Play finish audio when all pairs reversed
-
-
-
-
-
- // When 2 reversed cards do not match restore them
- // Remove lock
-
-
-
-
- // Game timer
- // Set interval
- // Clear interval when times up or quit button hit
- // Show times up modal when time = 0
-
-
-
-
- // Score system
- // Show game win modal when all pairs match
-
-
-
- // Play again when times up
-
-
-
- // Save score to local storage
- // Show score in highscores modal
-
-
-
- // console.log("hallo there is miro");
