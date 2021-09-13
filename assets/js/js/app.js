@@ -128,7 +128,7 @@ function appendCards(randomCards) {
    const cards = randomCards.concat(randomCards)
 
    //  const cards = myCard.concat(myCard);
-   const cardsContainer = document.getElementById("cards-container");
+   const cardsContainer = document.getElementById("grid-container");    //change from cards-container
 
    cards.forEach((imageName) => cardsContainer.insertAdjacentHTML("beforeend", renderCard(imageName)));
    let elements = Array.from(document.getElementsByClassName("card"));
@@ -178,7 +178,7 @@ function clearCards() {
  * Renders the card element using the image name passed as a parameter
  * @param {String} pexesoImg
  */
-function renderCard(pexesoImg) {                          //myCard?
+function renderCard(pexesoImg) {                          //myCard?      // id="grid-container" ?
    return `<div class="card">
                <div class="card-back all-cards">
                      <img class="card-img" src="assets/images/pexesoCard.jpg"  alt="Hidden card">
@@ -186,7 +186,7 @@ function renderCard(pexesoImg) {                          //myCard?
                <div class="card-picture all-cards">
                      <img class="card-value card-img" src="assets/images/${pexesoImg}" alt="Picture card">
                </div>
-            </div>`;
+          </div>`;
 }
 
 
